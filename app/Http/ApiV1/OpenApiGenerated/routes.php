@@ -6,9 +6,20 @@
  */
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('categories', [CategoryController::class, 'store']);
 Route::get('categories/{id}', [CategoryController::class, 'show']);
 Route::put('categories/{id}', [CategoryController::class, 'update']);
 Route::delete('categories/{id}', [CategoryController::class, 'destroy']);
+Route::get('products', [ProductController::class, 'index']);
+Route::post('products', [ProductController::class, 'store']);
+Route::get('products/{id}', [ProductController::class, 'show']);
+Route::put('products/{id}', [ProductController::class, 'update']);
+Route::delete('products/{id}', [ProductController::class, 'destroy']);
+Route::get('products/{productId}/categories', [ProductCategoryController::class, 'getProductCategories']);
+Route::post('products/{productId}/categories', [ProductCategoryController::class, 'addCategoryToProduct']);
+Route::delete('products/{productId}/categories/{categoryId}', [ProductCategoryController::class, 'removeCategoryFromProduct']);
+Route::get('categories/{categoryId}/products', [ProductCategoryController::class, 'getCategoryProducts']);

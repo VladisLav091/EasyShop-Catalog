@@ -1,0 +1,61 @@
+/products/{productId}/categories:
+  post:
+    tags:
+      - product-category
+    operationId: addCategoryToProduct
+    summary: Add a category to a product
+    description: Add a category to a product
+    x-lg-handler: 'App\Http\Controllers\ProductCategoryController@addCategoryToProduct'
+    parameters:
+      - $ref: '../index.yaml#/components/parameters/ProductId'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              category_id:
+                type: integer
+            required:
+              - category_id
+    responses:
+      "200":
+        description: Category added to product
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+
+/products/{productId}/categories/{categoryId}:
+  delete:
+    tags:
+      - product-category
+    operationId: removeCategoryFromProduct
+    summary: Remove a category from a product
+    description: Remove a category from a product
+    x-lg-handler: 'App\Http\Controllers\ProductCategoryController@removeCategoryFromProduct'
+    parameters:
+      - $ref: '../index.yaml#/components/parameters/ProductId'
+      - $ref: '../index.yaml#/components/parameters/CategoryId'
+    responses:
+      "200":
+        description: Category removed from product
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
