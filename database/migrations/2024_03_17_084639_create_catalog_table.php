@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('catalog', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name'); // Название категории товаров
             $table->text('description')->nullable(); // Описание категории товаров
             $table->unsignedBigInteger('parent_id')->nullable(); // ID родительской категории
-            $table->foreign('parent_id')->references('id')->on('catalog')->onDelete('cascade');
+            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
             $table->bSoolean('active')->default(true); // Флаг активности категории
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('catalog');
+        Schema::dropIfExists('categories');
     }
 };

@@ -1,0 +1,98 @@
+/categories:
+  post:
+    tags:
+      - categories
+    operationId: createCategory
+    summary: Создание категории
+    description: Запрос на создание категории
+    x-lg-handler: 'App\Http\Controllers\CategoryController@store'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas/categories.yaml#/CategoryCreateRequest'
+    responses:
+      "201":
+        description: Выполнено успешно
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/categories.yaml#/Category'
+      "400":
+        $ref: '../index.yaml#/components/responses/BadRequest'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+
+/categories/{id}:
+  get:
+    tags:
+      - categories
+    operationId: getCategory
+    x-lg-handler: 'App\Http\Controllers\CategoryController@show'
+    x-lg-skip-request-generation: true
+    summary: Получение объекта типа Category
+    description: Получение объекта типа Category
+    parameters:
+      - $ref: '../index.yaml#/components/parameters/PathId'
+    responses:
+      "200":
+        description: Успешный ответ
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/categories.yaml#/Category'
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+
+  put:
+    tags:
+      - categories
+    operationId: updateCategory
+    summary: Обновление категории
+    description: Запрос на обновление категории
+    x-lg-handler: 'App\Http\Controllers\CategoryController@update'
+    parameters:
+      - $ref: '../index.yaml#/components/parameters/PathId'
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: './schemas/categories.yaml#/CategoryUpdateRequest'
+    responses:
+      "200":
+        description: Выполнено успешно
+        content:
+          application/json:
+            schema:
+              $ref: './schemas/categories.yaml#/Category'
+      "400":
+        $ref: '../index.yaml#/components/responses/BadRequest'
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'
+
+  delete:
+    tags:
+      - categories
+    operationId: deleteCategory
+    summary: Удаление категории
+    description: Запрос на удаление категории
+    x-lg-handler: 'App\Http\Controllers\CategoryController@destroy'
+    parameters:
+      - $ref: '../index.yaml#/components/parameters/PathId'
+    responses:
+      "200":
+        description: Выполнено успешно
+        content:
+          application/json:
+            schema:
+              $ref: '../index.yaml#/components/schemas/EmptyDataResponse'
+      "404":
+        $ref: '../index.yaml#/components/responses/NotFound'
+      "500":
+        $ref: '../index.yaml#/components/responses/ServerError'

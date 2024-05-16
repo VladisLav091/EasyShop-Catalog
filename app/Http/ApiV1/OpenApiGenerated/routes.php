@@ -5,7 +5,10 @@
  * Do NOT edit it manually. Run `php artisan openapi:generate-server`.
  */
 
-use App\Http\ApiV1\Modules\Foos\Controllers\FoosController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('examples/{id}', [FoosController::class, 'get'])->name('getExample');
+Route::post('categories', [CategoryController::class, 'store']);
+Route::get('categories/{id}', [CategoryController::class, 'show']);
+Route::put('categories/{id}', [CategoryController::class, 'update']);
+Route::delete('categories/{id}', [CategoryController::class, 'destroy']);

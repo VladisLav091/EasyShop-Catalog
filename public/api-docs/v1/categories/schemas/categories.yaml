@@ -1,0 +1,42 @@
+Category:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    description:
+      type: string
+  required:
+    - id
+    - name
+
+CategoryCreateRequest:
+  type: object
+  properties:
+    name:
+      type: string
+    description:
+      type: string
+  required:
+    - name
+
+CategoryUpdateRequest:
+  type: object
+  properties:
+    name:
+      type: string
+    description:
+      type: string
+  required:
+    - name
+
+CategoryResponse:
+  type: object
+  properties:
+    data:
+      $ref: '#/Category'
+    meta:
+      type: object
+  required:
+    - data

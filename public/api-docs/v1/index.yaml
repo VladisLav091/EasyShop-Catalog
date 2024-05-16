@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  title: EasyShop-Catalog
+  version: 1.0.0
+  description: API for managing product categories in EasyShop
+  contact:
+    name: API Support
+    email: support@easyshop.com
+servers:
+  - url: /api/v1
+tags:
+  - name: categories
+    description: Operations related to product categories
+
+paths:
+  $ref: './categories/paths.yaml'
+
+components:
+  schemas:
+    Category:
+      $ref: './categories/schemas/categories.yaml#/Category'
+    CategoryCreateRequest:
+      $ref: './categories/schemas/categories.yaml#/CategoryCreateRequest'
+    CategoryUpdateRequest:
+      $ref: './categories/schemas/categories.yaml#/CategoryUpdateRequest'
+    CategoryResponse:
+      $ref: './categories/schemas/categories.yaml#/CategoryResponse'
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        meta:
+          type: object
+      required:
+        - code
+        - message
+    EmptyDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          nullable: true
+      required:
+        - data
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the resource
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
