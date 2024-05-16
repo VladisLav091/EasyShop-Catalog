@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller; // Добавьте этот импорт
+use Illuminate\Routing\Controller;
+
 class CategoryController extends Controller
 {
     public function index()
@@ -25,7 +26,6 @@ class CategoryController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
         ]);
 
         $category = Category::create($validatedData);
@@ -41,7 +41,6 @@ class CategoryController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
         ]);
 
         $category->update($validatedData);

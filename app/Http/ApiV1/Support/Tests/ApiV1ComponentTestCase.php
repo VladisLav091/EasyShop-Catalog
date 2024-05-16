@@ -11,6 +11,6 @@ abstract class ApiV1ComponentTestCase extends ComponentTestCase
 
     protected function getOpenApiDocumentPath(): string
     {
-        return public_path('api-docs/v1/index.yaml');
+        return public_path('api-docs/openapi.yaml');
     }
 }

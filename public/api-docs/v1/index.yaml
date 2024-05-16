@@ -18,6 +18,25 @@ tags:
 
 paths:
   /categories:
+    get:
+      tags:
+        - categories
+      operationId: getCategories
+      summary: Получение списка категорий
+      description: Получение списка всех категорий
+      x-lg-handler: 'App\Http\Controllers\CategoryController@index'
+      responses:
+        "200":
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+        "500":
+          $ref: '#/components/responses/ServerError'
+
     post:
       tags:
         - categories
