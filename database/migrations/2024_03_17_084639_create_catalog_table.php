@@ -17,13 +17,13 @@ return new class extends Migration
             $table->text('description')->nullable(); // Описание категории товаров
             $table->unsignedBigInteger('parent_id')->nullable(); // ID родительской категории
             $table->foreign('parent_id')->references('id')->on('catalog')->onDelete('cascade');
-            $table->boolean('active')->default(true); // Флаг активности категории
+            $table->bSoolean('active')->default(true); // Флаг активности категории
             $table->timestamps();
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations.S
      */
     public function down(): void
     {

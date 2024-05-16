@@ -1,28 +1,26 @@
 openapi: 3.0.3
 info:
-  title: Ensi Backend Skeleton (Replace me)
+  title: EasyShop-Catalog
   contact:
     name: API Support
     url: https://ensi.tech/contacts
     email: mail@greensight.ru
   version: 1.0.0
-  description: Ensi Backend Skeleton Description (Replace me)
+  description: EasyShop-Catalog
 servers:
   - url: /api/v1
 tags:
-  - name: examples
-    description: Тэг-пример
+  - name: Catalogs
+    description: catalog
 paths:
   /examples/{id}:
     get:
       tags:
-        - examples
-      operationId: getExample
-      x-lg-handler: 'App\Http\ApiV1\Modules\Foos\Controllers\FoosController@get'
-      x-lg-route-name: 'getExample'
-      x-lg-skip-request-generation: true
-      summary: Получение объекта типа Example
-      description: Получение объекта типа Example
+        - catalog
+      operationId: createCatalog
+      x-lg-handler: 'App\Http\ApiV1\Modules\Catalog\Controllers\CatalogController'
+      summary: Создание обьекта типа каталог
+      description: Создание обьекта типа каталог
       parameters:
         - $ref: '#/components/parameters/PathId'
         - $ref: '#/components/parameters/QueryInclude'
