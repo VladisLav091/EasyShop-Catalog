@@ -17,10 +17,12 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         if (!$product) {
-            return response()->json(['message' => 'Product not found'], 404);
+            return response()->json(['code' => 'not_found', 'message' => 'Product not found'], 404);
         }
         return response()->json($product, 200);
     }
+
+
 
     public function store(Request $request)
     {
@@ -28,7 +30,6 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0|max:9999999.99',
-            'stock' => 'required|integer|min:0',
         ]);
 
         $product = Product::create($validatedData);
@@ -46,7 +47,6 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0|max:9999999.99',
-            'stock' => 'required|integer|min:0',
         ]);
 
         $product->update($validatedData);
@@ -57,10 +57,11 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         if (!$product) {
-            return response()->json(['message' => 'Product not found'], 404);
+            return response()->json(['code' => 'not_found', 'message' => 'Product not found'], 404);
         }
 
         $product->delete();
-        return response()->json(['message' => 'Product deleted'], 200);
+        return response()->json(['data' => null], 200);  // Возвращаем объект с ключом "data"
     }
+
 }

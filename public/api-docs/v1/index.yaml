@@ -301,7 +301,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmptyDataResponse'
+                type: object
+                properties:
+                  data:
+                    type: object
+                    nullable: true
         "404":
           $ref: '#/components/responses/NotFound'
         "500":
@@ -439,8 +443,6 @@ components:
         price:
           type: number
           format: float
-          minimum: 0
-          maximum: 9999999.99
         created_at:
           type: string
           format: date-time
@@ -464,13 +466,9 @@ components:
           format: float
           minimum: 0
           maximum: 9999999.99
-        stock:
-          type: integer
-          minimum: 0
       required:
         - name
         - price
-        - stock
     ProductUpdateRequest:
       type: object
       properties:
@@ -484,13 +482,10 @@ components:
           format: float
           minimum: 0
           maximum: 9999999.99
-        stock:
-          type: integer
-          minimum: 0
       required:
         - name
         - price
-        - stock
+
     ErrorResponse:
       type: object
       properties:
