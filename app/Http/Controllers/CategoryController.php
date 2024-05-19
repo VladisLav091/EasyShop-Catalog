@@ -10,8 +10,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return response()->json(['data' => $categories], 200);
+        return response()->json($categories, 200); // Возвращаем массив категорий
     }
+
 
     public function show($id)
     {
@@ -19,8 +20,9 @@ class CategoryController extends Controller
         if (!$category) {
             return response()->json(['code' => 'not_found', 'message' => 'Category not found'], 404);
         }
-        return response()->json(['data' => $category], 200);
+        return response()->json($category, 200); // Возвращаем категорию без обертки в "data"
     }
+
 
     public function store(Request $request)
     {
@@ -30,7 +32,7 @@ class CategoryController extends Controller
         ]);
 
         $category = Category::create($validatedData);
-        return response()->json(['data' => $category], 201);
+        return response()->json($category, 201); // Возвращаем категорию без обертки в "data"
     }
 
     public function update(Request $request, $id)
@@ -46,7 +48,7 @@ class CategoryController extends Controller
         ]);
 
         $category->update($validatedData);
-        return response()->json(['data' => $category], 200);
+        return response()->json($category, 200); // Возвращаем обновленную категорию без ключа "data"
     }
 
     public function destroy($id)
@@ -57,7 +59,7 @@ class CategoryController extends Controller
         }
 
         $category->delete();
-        return response()->json(['message' => 'Category deleted'], 200);  // Изменено для соответствия ожидаемой схеме
+        return response()->json(['data' => null], 200);// Изменено для соответствия ожидаемой схеме
     }
 }
 
